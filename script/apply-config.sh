@@ -34,8 +34,6 @@
 #   4. Directory pre created with the module_name inside conf-home/script
 #
 # TODO: Add git support to clone the PUPPET modules
-# TODO: Create modulepath if not exists
-########################################################################################################################
 
 PRODUCT=${PRODUCT}
 PRODUCT_VERSION=${VERSION}
@@ -69,20 +67,20 @@ FAILED_ARTIFACT_APPLY=17
 if [ -z "$(ls -A ${WORKING_DIRECTORY}/${DEPLOYMENT_PATTERN}/)" ]; then
    echo "Initial Run..."
    INITIAL_RUN=true
+   mkdir ${WORKING_DIRECTORY}/${DEPLOYMENT_PATTERN}/
 else
    echo "Applying artifact(s) to the existing deployment pattern >> $DEPLOYMENT_PATTERN..."
 fi
 
 if $INITIAL_RUN ;
 then
-  echo "Welcome to WSO2!!!"
-  ${WUM} init -u ${WUM_USER} -p ${WUM_PASSWORD} > /dev/null 2>&1
+  ${WUM} init -u ${WUM_USER} -p ${WUM_PASSWORD} -v &>> wum.log
 
   # Add WUM product
-  echo "Adding the product - ${PRODUCT}-${PRODUCT_VERSION}..."
-  ${WUM} add ${PRODUCT}-${PRODUCT_VERSION} -y > /dev/null 2>&1
+  echo "Adding the product - ${PRODUCT}-${PRODUCT_VERSION}..." &>> wum.log
+  ${WUM} add ${PRODUCT}-${PRODUCT_VERSION} -y  -v &>> wum.log
   if [ $? -eq 0 ] ; then
-    echo "${PRODUCT}-${PRODUCT_VERSION} successfully added..."
+    echo "${PRODUCT}-${PRODUCT_VERSION} successfully added..." &>> wum.log
   else
     if [ $? -ne 1 ] ; then
       exit ${FAILED_WUM_ADD}
@@ -91,31 +89,31 @@ then
   fi
 
   # Get the updates
-  echo "Get latest updates for the product - ${PRODUCT}-${PRODUCT_VERSION}..."
-  ${WUM} update ${PRODUCT}-${PRODUCT_VERSION} ${CHANNEL}
+  echo "Get latest updates for the product - ${PRODUCT}-${PRODUCT_VERSION}..." &>> wum.log
+  ${WUM} update ${PRODUCT}-${PRODUCT_VERSION} ${CHANNEL} &>> wum.log
   if [ $? -eq 0 ] ; then
-    echo "${PRODUCT}-${PRODUCT_VERSION} successfully updated..."
+    echo "${PRODUCT}-${PRODUCT_VERSION} successfully updated..." &>> wum.log
   else
     if [ $? -eq 1 ] ; then
       exit ${FAILED_WUM_UPDATE}
     fi
-    echo "Failed to update ${PRODUCT}-${PRODUCT_VERSION}. The reason would be the product is already updated..."
+    echo "Failed to update ${PRODUCT}-${PRODUCT_VERSION}. The reason would be the product is already updated..." &>> wum.log
   fi
 
   # Move and unzip the WUM updated product
-  echo "Moving the WUM updated product..."
+  echo "Moving the WUM updated product..." &>> wum.log
   ${MV} ${WUM_PRODUCT_HOME}/${PRODUCT}/${PRODUCT_VERSION}/${CHANNEL}/${PRODUCT}-${PRODUCT_VERSION}*.zip ${WORKING_DIRECTORY}/${DEPLOYMENT_PATTERN}/${PRODUCT}-${PRODUCT_VERSION}.zip
   if [ $? -ne 0 ] ; then
     echo "Failed to move the WUM updated product from ${WUM_PRODUCT_HOME}/${PRODUCT}/${PRODUCT_VERSION}/${CHANNEL} to ${WORKING_DIRECTORY}/${DEPLOYMENT_PATTERN}..."
     exit ${FAILED_TO_MOVE_WUMMED_PRODUCT}
   fi
-  echo "Unzip the WUM updated product..."
+  echo "Unzip the WUM updated product..." &>> wum.log
   ${UNZIP} -q ${WORKING_DIRECTORY}/${DEPLOYMENT_PATTERN}/${PRODUCT}-${PRODUCT_VERSION}.zip -d ${WORKING_DIRECTORY}/${DEPLOYMENT_PATTERN}/
   if [ $? -ne 0 ] ; then
     echo "Failed to unzip the WUM updated product ${PRODUCT}-${PRODUCT_VERSION}..."
     exit ${FAILED_UNZIP}
   fi
-  echo "Remove the zipped product..."
+  echo "Remove the zipped product..." &>> wum.log
   ${RM} ${WORKING_DIRECTORY}/${DEPLOYMENT_PATTERN}/${PRODUCT}-${PRODUCT_VERSION}.zip
   if [ $? -ne 0 ] ; then
     echo "Failed to remove the zipped product ${PRODUCT}-${PRODUCT_VERSION}..."
@@ -138,14 +136,19 @@ if [ $? -ne 0 ] ; then
   exit ${FAILED_ARTIFACT_APPLY}
 fi
 
-echo "Running the in-place updates tool..."
-# Running the in-place updates tool for Linux
-${WORKING_DIRECTORY}/${DEPLOYMENT_PATTERN}/${PRODUCT}-${PRODUCT_VERSION}/bin/update_linux -u ${WUM_USER} -p ${WUM_PASSWORD} -c ${CHANNEL} 2>&1 | tee inplace.log
-cat inplace.log | grep "Merging configurations failed."
-if [ $? -eq 0 ] ; then
-  echo "Failed to execute in-place updates for ${PRODUCT}-${PRODUCT_VERSION}. Merging configurations failed..."
-  exit ${FAILED_INPLACE_UPDATES}
+if ! $INITIAL_RUN;
+then
+    echo "Running the in-place updates tool..."
+    ${WORKING_DIRECTORY}/${DEPLOYMENT_PATTERN}/${PRODUCT}-${PRODUCT_VERSION}/bin/update_linux -u ${WUM_USER} -p ${WUM_PASSWORD} -c ${CHANNEL} 2>&1 | tee inplace.log
+    cat inplace.log | grep "Merging configurations failed."
+    if [ $? -eq 0 ] ; then
+      echo "Failed to execute in-place updates for ${PRODUCT}-${PRODUCT_VERSION}. Merging configurations failed..."
+      exit ${FAILED_INPLACE_UPDATES}
+    fi
+    echo "In-place update successfully executed for ${PRODUCT}-${PRODUCT_VERSION}..."
+    ${RM} inplace.log
 fi
+
 echo "In-place update successfully executed for ${PRODUCT}-${PRODUCT_VERSION}..."
 ${RM} inplace.log
 #Create the zipped folder
