@@ -64,12 +64,13 @@ FAILED_UNZIP=15
 FAILED_RM_UNZIP=16
 FAILED_ARTIFACT_APPLY=17
 
-if [ -z "$(ls -A ${WORKING_DIRECTORY}/${DEPLOYMENT_PATTERN}/)" ]; then
+if [ -d "${WORKING_DIRECTORY}/${DEPLOYMENT_PATTERN}/" ];
+then
+   echo "Applying artifact(s) to the existing deployment pattern >> $DEPLOYMENT_PATTERN..."
+else
    echo "Initial Run..."
    INITIAL_RUN=true
    mkdir ${WORKING_DIRECTORY}/${DEPLOYMENT_PATTERN}/
-else
-   echo "Applying artifact(s) to the existing deployment pattern >> $DEPLOYMENT_PATTERN..."
 fi
 
 if $INITIAL_RUN ;
