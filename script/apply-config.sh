@@ -150,8 +150,6 @@ then
     ${RM} inplace.log
 fi
 
-echo "In-place update successfully executed for ${PRODUCT}-${PRODUCT_VERSION}..."
-${RM} inplace.log
 #Create the zipped folder
 echo "Creating the archive for ${PRODUCT}-${PRODUCT_VERSION}..."
 cd ${WORKING_DIRECTORY}/${DEPLOYMENT_PATTERN}/
