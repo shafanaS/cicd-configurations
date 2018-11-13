@@ -86,7 +86,6 @@ then
     if [ $? -ne 1 ] ; then
       exit ${FAILED_WUM_ADD}
     fi
-    echo "Failed to add ${PRODUCT}-${PRODUCT_VERSION}. The reason would be the product is already added..."
   fi
 
   # Get the updates
@@ -98,7 +97,6 @@ then
     if [ $? -eq 1 ] ; then
       exit ${FAILED_WUM_UPDATE}
     fi
-    echo "Failed to update ${PRODUCT}-${PRODUCT_VERSION}. The reason would be the product is already updated..." &>> wum.log
   fi
 
   # Move and unzip the WUM updated product
