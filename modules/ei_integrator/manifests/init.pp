@@ -97,7 +97,7 @@ class ei_integrator (
 
   # Copy mysql-connector-java-5.1.41-bin.jar to installed directory
   # file { "$wso2_path/$product-$product_version/lib/${mysql_connector}":
-  file { "$wso2_path/lib/${mysql_connector}":
+  file { "$wso2_path/${mysql_connector}":
     mode   => '0754',
     source => "puppet:///modules/ei_integrator/mysql-connector-java-5.1.41-bin.jar",
   }
