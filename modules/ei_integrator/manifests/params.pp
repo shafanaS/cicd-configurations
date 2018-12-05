@@ -42,7 +42,7 @@ class ei_integrator::params {
   $broker_elb_dns_name = 'localhost'
   $ei_package = 'wso2ei-6.4.0.zip'
   # $wso2_path="/home/jenkins/conf-home/script/ei_integrator"
-  $wso2_path="/var/lib/jenkins/workspace/EI-6.4.0/configs/modules/ei-integrator"
+  $wso2_path="/var/lib/jenkins/workspace/EI-6.4.0/configs/modules/ei_integrator"
   $start_script_template="bin/integrator.sh"
   $mysql_connector="mysql-connector-java-5.1.41-bin.jar"
 
