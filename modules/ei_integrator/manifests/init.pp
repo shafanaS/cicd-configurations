@@ -83,7 +83,7 @@ class ei_integrator (
     file { "$wso2_path/${template}":
       ensure  => file,
       mode    => '0644',
-      content => template("${module_name}/${template}.erb")
+      content => template("configs/modules/${module_name}/${template}.erb")
     }
   }
 
