@@ -83,7 +83,7 @@ class ei_integrator (
     # file { "$wso2_path/${template}":
       ensure  => file,
       mode    => '0644',
-      content => template("/var/lib/jenkins/workspace/EI-6.4.0/configs/modules/${module_name}/${template}.erb")
+      content => template("/var/lib/jenkins/workspace/EI-6.4.0/configs/modules/${module_name}/templates/carbon-home/${template}.erb")
     }
   }
 
@@ -92,13 +92,13 @@ class ei_integrator (
     # file { "$wso2_path/${start_script_template}":
     ensure  => file,
     mode    => '0754',
-    content => template("/var/lib/jenkins/workspace/EI-6.4.0/configs/modules/${module_name}/${start_script_template}.erb")
+    content => template("/var/lib/jenkins/workspace/EI-6.4.0/configs/modules/${module_name}/templates/carbon-home/${start_script_template}.erb")
   }
 
   # Copy mysql-connector-java-5.1.41-bin.jar to installed directory
   file { "$wso2_path/$product-$product_version/lib/${mysql_connector}":
   # file { "$wso2_path/${mysql_connector}":
     mode   => '0754',
-    source => "puppet:///modules/ei_integrator/files/mysql-connector-java-5.1.41-bin.jar",
+    source => "puppet:///modules/ei_integrator/mysql-connector-java-5.1.41-bin.jar",
   }
 }

@@ -42,21 +42,21 @@ class ei_integrator::params {
   $broker_elb_dns_name = 'localhost'
   $ei_package = 'wso2ei-6.4.0.zip'
   # $wso2_path="/home/jenkins/conf-home/script/ei_integrator"
-  $wso2_path="/var/lib/jenkins/workspace/EI-6.4.0/configs/modules/ei_integrator"
-  $start_script_template="templates/carbon-home/bin/integrator.sh"
-  $mysql_connector="files/mysql-connector-java-5.1.41-bin.jar"
+  $wso2_path="/var/lib/jenkins/workspace/EI-6.4.0/ei_integrator"
+  $start_script_template="bin/integrator.sh"
+  $mysql_connector="mysql-connector-java-5.1.41-bin.jar"
 
   $template_list = [
-    'templates/carbon-home/conf/datasources/master-datasources.xml',
-    'templates/carbon-home/conf/carbon.xml',
-    'templates/carbon-home/conf/axis2/axis2.xml',
-    'templates/carbon-home/conf/user-mgt.xml',
-    'templates/carbon-home/conf/registry.xml',
-    'templates/carbon-home/conf/tomcat/catalina-server.xml',
-    'templates/carbon-home/conf/synapse.properties',
-    'templates/carbon-home/conf/jndi.properties',
-    'templates/carbon-home/repository/deployment/server/eventpublishers/MessageFlowConfigurationPublisher.xml',
-    'templates/carbon-home/repository/deployment/server/eventpublishers/MessageFlowStatisticsPublisher.xml',
+    'conf/datasources/master-datasources.xml',
+    'conf/carbon.xml',
+    'conf/axis2/axis2.xml',
+    'conf/user-mgt.xml',
+    'conf/registry.xml',
+    'conf/tomcat/catalina-server.xml',
+    'conf/synapse.properties',
+    'conf/jndi.properties',
+    'repository/deployment/server/eventpublishers/MessageFlowConfigurationPublisher.xml',
+    'repository/deployment/server/eventpublishers/MessageFlowStatisticsPublisher.xml',
   ]
 
   # ------ Configuration Params ------ #
