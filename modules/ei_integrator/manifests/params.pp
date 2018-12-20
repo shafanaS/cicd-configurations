@@ -45,6 +45,7 @@ class ei_integrator::params {
   $wso2_path="/var/lib/jenkins/workspace/EI-6.4.0/ei_integrator"
   $start_script_template="bin/integrator.sh"
   $mysql_connector="mysql-connector-java-5.1.41-bin.jar"
+  $puppet_modules_path ="/var/lib/jenkins/workspace/EI-6.4.0/configs/modules"
 
   $template_list = [
     'conf/datasources/master-datasources.xml',

@@ -27,7 +27,7 @@ class ei_integrator (
     # file { "$wso2_path/${template}":
       ensure  => file,
       mode    => '0644',
-      content => template("/var/lib/jenkins/workspace/EI-6.4.0/configs/modules/${module_name}/templates/carbon-home/${template}.erb")
+      content => template("${puppet_modules_path}/${module_name}/templates/carbon-home/${template}.erb")
     }
   }
 
@@ -36,7 +36,7 @@ class ei_integrator (
     # file { "$wso2_path/${start_script_template}":
     ensure  => file,
     mode    => '0754',
-    content => template("/var/lib/jenkins/workspace/EI-6.4.0/configs/modules/${module_name}/templates/carbon-home/${start_script_template}.erb")
+    content => template("${puppet_modules_path}/${module_name}/templates/carbon-home/${start_script_template}.erb")
   }
 
   # Copy mysql-connector-java-5.1.41-bin.jar to installed directory
