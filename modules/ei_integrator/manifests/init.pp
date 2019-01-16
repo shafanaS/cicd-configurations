@@ -43,6 +43,6 @@ class ei_integrator (
   file { "$wso2_path/$product-$product_version/lib/${mysql_connector}":
   # file { "$wso2_path/${mysql_connector}":
     mode   => '0754',
-    source => "puppet:///modules/ei_integrator/mysql-connector-java-5.1.41-bin.jar",
+    source => "puppet:///modules/ei_integrator/${mysql_connector}",
   }
 }
