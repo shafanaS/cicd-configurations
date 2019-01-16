@@ -43,6 +43,6 @@ class wso2ei (
   file { "$wso2_path/$product-$product_version/lib/${mysql_connector}":
   # file { "$wso2_path/${mysql_connector}":
     mode   => '0754',
-    source => "puppet:///modules/Wwso2ei/${mysql_connector}",
+    source => "puppet:///modules/wso2ei/${mysql_connector}",
   }
 }
