@@ -14,12 +14,12 @@
 #  limitations under the License.
 # ----------------------------------------------------------------------------
 
-# Class: ei_integrator
+# Class: wso2ei
 # Init class of EI Integrator default profile
-class ei_integrator (
+class wso2ei (
 )
 
-  inherits ei_integrator::params {
+  inherits wso2ei::params {
 
   # Copy configuration changes to the installed directory
   $template_list.each | String $template | {
@@ -43,6 +43,6 @@ class ei_integrator (
   file { "$wso2_path/$product-$product_version/lib/${mysql_connector}":
   # file { "$wso2_path/${mysql_connector}":
     mode   => '0754',
-    source => "puppet:///modules/ei_integrator/${mysql_connector}",
+    source => "puppet:///modules/Wwso2ei/${mysql_connector}",
   }
 }
