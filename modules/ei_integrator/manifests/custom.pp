@@ -14,15 +14,8 @@
 #  limitations under the License.
 # ----------------------------------------------------------------------------
 
-# Class wso2ei::startserver
-# Starts the server as a service in the final stage.
-class wso2ei::startserver (
-  $service_name = $wso2ei::params::service_name
-)
-  inherits wso2ei::params {
-
-  # service { $service_name:
-  #   ensure => running,
-  #   enable => true
-  # }
+# Class: ei_integrator::custom
+# This class is reserved to run custom user code before starting the server.
+class ei_integrator::custom {
+  # resources
 }

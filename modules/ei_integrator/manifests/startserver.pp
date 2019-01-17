@@ -14,8 +14,15 @@
 #  limitations under the License.
 # ----------------------------------------------------------------------------
 
-# Class: wso2ei::custom
-# This class is reserved to run custom user code before starting the server.
-class wso2ei::custom {
-  # resources
+# Class ei_integrator::startserver
+# Starts the server as a service in the final stage.
+class ei_integrator::startserver (
+  $service_name = $ei_integrator::params::service_name
+)
+  inherits ei_integrator::params {
+
+  # service { $service_name:
+  #   ensure => running,
+  #   enable => true
+  # }
 }

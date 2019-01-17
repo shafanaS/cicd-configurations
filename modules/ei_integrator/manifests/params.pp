@@ -14,9 +14,9 @@
 #  limitations under the License.
 # ----------------------------------------------------------------------------
 
-# Claas wso2ei::params
+# Claas ei_integrator::params
 # This class includes all the necessary parameters.
-class wso2ei::params {
+class ei_integrator::params {
   $user = 'wso2carbon'
   $user_id = 802
   $user_group = 'wso2'
@@ -41,7 +41,7 @@ class wso2ei::params {
   # $broker_elb_dns_name  = 'BROKER_ELB_DNS_NAME'
   $broker_elb_dns_name = 'localhost'
   $ei_package = 'wso2ei-6.4.0.zip'
-  $wso2_path="/var/lib/jenkins/workspace/EI-6.4.0/wso2ei"
+  $wso2_path="/var/lib/jenkins/workspace/EI-6.4.0/${module_name}r"
   $start_script_template="bin/integrator.sh"
   $mysql_connector="mysql-connector-java-5.1.41-bin.jar"
   $puppet_modules_path ="/var/lib/jenkins/workspace/EI-6.4.0/configs/modules"
