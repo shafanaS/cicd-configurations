@@ -24,6 +24,7 @@ class ei_integrator (
   # Copy configuration changes to the installed directory
   $template_list.each | String $template | {
     file { "$wso2_path/$product-$product_version/${template}":
+    # file { "$wso2_path/${template}":
       ensure  => file,
       mode    => '0644',
       content => template("${puppet_modules_path}/${module_name}/templates/carbon-home/${template}.erb")
@@ -39,7 +40,8 @@ class ei_integrator (
 
   # Copy mysql-connector-java-5.1.41-bin.jar to installed directory
   file { "$wso2_path/$product-$product_version/lib/${mysql_connector}":
+  # file { "$wso2_path/${mysql_connector}":
     mode   => '0754',
-    source => "puppet:///modules/ei_integrator/mysql-connector-java-5.1.41-bin.jar",
+    source => "puppet:///modules/${module_name}/${mysql_connector}",
   }
 }
