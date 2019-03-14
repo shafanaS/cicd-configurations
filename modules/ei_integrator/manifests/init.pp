@@ -33,7 +33,6 @@ class ei_integrator (
 
   # Copy wso2server.sh to installed directory
     file { "$wso2_path/$product-$product_version/${start_script_template}":
-    # file { "$wso2_path/${start_script_template}":
     ensure  => file,
     mode    => '0754',
     content => template("${puppet_modules_path}/${module_name}/templates/carbon-home/${start_script_template}.erb")
