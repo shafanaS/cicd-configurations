@@ -17,11 +17,7 @@
 # Claas ei_integrator::params
 # This class includes all the necessary parameters.
 class ei_integrator::params {
-  $user = 'wso2carbon'
-  $user_id = 802
-  $user_group = 'wso2'
   $user_home = '/home/$user'
-  $user_group_id = 802
   $hostname = 'EI_ALB_DNS_NAME'
   $mgt_hostname = 'EI_ALB_DNS_NAME'
   $jdk_version = 'JDK_TYPE'
@@ -31,20 +27,16 @@ class ei_integrator::params {
   $local_member_host = 'LOCAL-MEMBER-HOST'
   $http_proxy_port = '80'
   $https_proxy_port = '443'
-  $product = 'wso2ei'
-  $product_version = '6.4.0'
   $profile = 'integrator'
   $service_name = "${product}-${profile}"
-  # $ei_analytics = 'CF_ANALYTICS_IP'
   $ei_analytics = 'localhost'
   $mediation_flow_statistics = 'false'
-  # $broker_elb_dns_name  = 'BROKER_ELB_DNS_NAME'
   $broker_elb_dns_name = 'localhost'
-  $ei_package = 'wso2ei-6.4.0.zip'
-  $wso2_path="/var/lib/jenkins/workspace/EI-6.4.0/${module_name}"
+  $ei_package = '${product}-${product_version}.zip'
+  $wso2_path="/var/lib/jenkins/workspace/EI-${product_version}/${module_name}"
   $start_script_template="bin/integrator.sh"
   $mysql_connector="mysql-connector-java-5.1.41-bin.jar"
-  $puppet_modules_path ="/var/lib/jenkins/workspace/EI-6.4.0/configs/modules"
+  $puppet_modules_path ="/var/lib/jenkins/workspace/EI-${product_version}/configs/modules"
 
   $template_list = [
     'conf/datasources/master-datasources.xml',
@@ -59,7 +51,7 @@ class ei_integrator::params {
     'repository/deployment/server/eventpublishers/MessageFlowStatisticsPublisher.xml',
   ]
 
-  # ------ Configuration Params ------ #
+  #### ------ Configuration Params ------ ####
 
   # master-datasources.xml
 
