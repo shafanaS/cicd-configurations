@@ -19,5 +19,4 @@ class ei_common::service inherits ei_common::params {
 #  service { "${wso2_service_name}":
 #    enable => true,
 #    ensure => running,
-  }
 }
