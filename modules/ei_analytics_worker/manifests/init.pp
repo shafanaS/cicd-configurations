@@ -22,7 +22,7 @@ class ei_analytics_worker inherits ei_analytics_worker::params {
 
   # Copy configuration changes to the installed directory
   $template_list.each |String $template| {
-    file { "${carbon_home}/${template}":
+    file { "${sys:carbon.home}/${template}":
       ensure  => file,
       mode    => '0644',
       content => template("${module_name}/carbon-home/${template}.erb"),
@@ -31,7 +31,7 @@ class ei_analytics_worker inherits ei_analytics_worker::params {
   }
 
   # Copy carbon.sh to installed directory
-  file { "${carbon_home}/${start_script_template}":
+  file { "${sys:carbon.home}/${start_script_template}":
     ensure  => file,
     owner   => $user,
     group   => $user_group,

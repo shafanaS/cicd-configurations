@@ -16,7 +16,7 @@
 
 # Claas ei_integrator::params
 # This class includes all the necessary parameters.
-class ei_integrator::params {
+class ei_integrator::params inherits ei_common::params {
   $user_home = '/home/$user'
   $hostname = 'EI_ALB_DNS_NAME'
   $mgt_hostname = 'EI_ALB_DNS_NAME'

@@ -39,3 +39,4 @@ class ei_analytics_dashboard inherits ei_analytics_dashboard::params {
     content => template("${module_name}/carbon-home/${start_script_template}.erb"),
     require => Class["ei_common"]
   }
+}
