@@ -110,7 +110,7 @@ class ei_integrator::params inherits ei_common::params {
       # -------------- Deployment.yaml Config -------------- #
 
       # Carbon Configuration Parameters
-      $ports_offset = 0
+      $analytics_ports_offset = 0
 
       # transport.http config
       $default_listener_host = '0.0.0.0'
@@ -139,7 +139,7 @@ class ei_integrator::params inherits ei_common::params {
       # -------------- Deployment.yaml Config -------------- #
 
       # Carbon Configuration Parameters
-      $ports_offset = 2
+      $dashboard_ports_offset = 2
 
       # Data Sources Configuration
       $business_rules_db_url = 'jdbc:mysql://EI_RDS_DNS_NAME:3306/BUSINESS_RULES_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000;MVCC=TRUE'
