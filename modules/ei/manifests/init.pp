@@ -53,8 +53,6 @@ class ei inherits ei::params {
   # Copy carbon.sh to installed directory
   file { "$carbon_home/$product-$product_version/${analytics_start_script_template}":
     ensure  => file,
-    owner   => $user,
-    group   => $user_group,
     mode    => '0754',
     content => template("${puppet_modules_path}/${module_name}/templates/carbon-home/${analytics_start_script_template}.erb")
   }
@@ -72,8 +70,6 @@ class ei inherits ei::params {
   # Copy carbon.sh to installed directory
   file { "$carbon_home/$product-$product_version/${dashboard_start_script_template}":
     ensure  => file,
-    owner   => $user,
-    group   => $user_group,
     mode    => '0754',
     content => template("${puppet_modules_path}/${module_name}/templates/carbon-home/${dashboard_start_script_template}.erb")
   }
