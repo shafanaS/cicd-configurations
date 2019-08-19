@@ -19,6 +19,7 @@
 class ei::params {
   $product = 'wso2ei'
   $product_version = '6.4.0'
+  $user = 'wso2carbon'
   $user_id = 802
   $user_group = 'wso2'
   $user_home = '/home/$user'
