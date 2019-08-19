@@ -43,7 +43,7 @@ class ei inherits ei::params {
  ###### ANALYTICS WORKER ######
   # Copy configuration changes to the installed directory
   $analytics_template_list.each |String $template| {
-    file { "$carbon_home/${template}":
+    file { "$carbon_home/$product-$product_version/${template}":
       ensure  => file,
       mode    => '0644',
       content => template("${puppet_modules_path}/${module_name}/templates/carbon-home/${template}.erb")
@@ -51,7 +51,7 @@ class ei inherits ei::params {
   }
 
   # Copy carbon.sh to installed directory
-  file { "$carbon_home/${analytics_start_script_template}":
+  file { "$carbon_home/$product-$product_version/${analytics_start_script_template}":
     ensure  => file,
     owner   => $user,
     group   => $user_group,
@@ -62,7 +62,7 @@ class ei inherits ei::params {
  ###### ANALYTICS DASHBOARD ######
   # Copy configuration changes to the installed directory
   $dashboard_template_list.each |String $template| {
-    file { "$carbon_home/${template}":
+    file { "$carbon_home/$product-$product_version/${template}":
       ensure  => file,
       mode    => '0644',
       content => template("${puppet_modules_path}/${module_name}/templates/carbon-home/${template}.erb")
@@ -70,7 +70,7 @@ class ei inherits ei::params {
   }
 
   # Copy carbon.sh to installed directory
-  file { "$carbon_home/${dashboard_start_script_template}":
+  file { "$carbon_home/$product-$product_version/${dashboard_start_script_template}":
     ensure  => file,
     owner   => $user,
     group   => $user_group,

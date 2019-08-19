@@ -19,7 +19,10 @@
 class ei::params {
   $product = 'wso2ei'
   $product_version = '6.4.0'
+  $user_id = 802
+  $user_group = 'wso2'
   $user_home = '/home/$user'
+  $user_group_id = 802
   $hostname = 'EI_ALB_DNS_NAME'
   $mgt_hostname = 'EI_ALB_DNS_NAME'
   $jdk_version = 'JDK_TYPE'
