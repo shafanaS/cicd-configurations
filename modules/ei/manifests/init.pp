@@ -14,9 +14,9 @@
 #  limitations under the License.
 # ----------------------------------------------------------------------------
 
-# Class: ei_integrator
-# Init class of EI Integrator default profile
-class ei_integrator inherits ei_integrator::params {
+# Class: ei
+# Init class of EI
+class ei inherits ei::params {
 
   # Copy configuration changes to the installed directory
   $template_list.each | String $template | {

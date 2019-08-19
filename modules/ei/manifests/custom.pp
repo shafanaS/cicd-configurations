@@ -14,8 +14,8 @@
 #  limitations under the License.
 # ----------------------------------------------------------------------------
 
-# Class: ei_integrator::custom
+# Class: ei::custom
 # This class is reserved to run custom user code before starting the server.
-class ei_integrator::custom {
+class ei::custom {
   # resources
 }

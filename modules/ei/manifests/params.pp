@@ -14,9 +14,9 @@
 #  limitations under the License.
 # ----------------------------------------------------------------------------
 
-# Claas ei_integrator::params
+# Claas ei::params
 # This class includes all the necessary parameters.
-class ei_integrator::params inherits ei_common::params {
+class ei::params {
   $user_home = '/home/$user'
   $hostname = 'EI_ALB_DNS_NAME'
   $mgt_hostname = 'EI_ALB_DNS_NAME'

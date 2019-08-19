@@ -14,12 +14,12 @@
 #  limitations under the License.
 # ----------------------------------------------------------------------------
 
-# Class ei_integrator::startserver
+# Class ei::startserver
 # Starts the server as a service in the final stage.
-class ei_integrator::startserver (
-  $service_name = $ei_integrator::params::service_name
+class ei::startserver (
+  $service_name = $ei::params::service_name
 )
-  inherits ei_integrator::params {
+  inherits ei::params {
 
   # service { $service_name:
   #   ensure => running,
