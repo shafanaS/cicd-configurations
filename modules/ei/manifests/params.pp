@@ -17,6 +17,8 @@
 # Claas ei::params
 # This class includes all the necessary parameters.
 class ei::params {
+  $product = 'wso2ei'
+  $product_version = '6.4.0'
   $user_home = '/home/$user'
   $hostname = 'EI_ALB_DNS_NAME'
   $mgt_hostname = 'EI_ALB_DNS_NAME'
