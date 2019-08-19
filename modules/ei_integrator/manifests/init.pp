@@ -18,30 +18,64 @@
 # Init class of EI Integrator default profile
 class ei_integrator inherits ei_integrator::params {
 
-  include ei_common
-
   # Copy configuration changes to the installed directory
   $template_list.each | String $template | {
-    file { "$wso2_path/$product-$product_version/${template}":
+    file { "$carbon_home/$product-$product_version/${template}":
       ensure  => file,
       mode    => '0644',
-      content => template("${puppet_modules_path}/${module_name}/templates/carbon-home/${template}.erb"),
-      require => Class["ei_common"]
+      content => template("${puppet_modules_path}/${module_name}/templates/carbon-home/${template}.erb")
     }
   }
 
   # Copy wso2server.sh to installed directory
-    file { "$wso2_path/$product-$product_version/${start_script_template}":
+    file { "$carbon_home/$product-$product_version/${start_script_template}":
     ensure  => file,
     mode    => '0754',
-    content => template("${puppet_modules_path}/${module_name}/templates/carbon-home/${start_script_template}.erb"),
-    require => Class["ei_common"]
+    content => template("${puppet_modules_path}/${module_name}/templates/carbon-home/${start_script_template}.erb")
   }
 
   # Copy mysql-connector-java-5.1.41-bin.jar to installed directory
-  file { "$wso2_path/$product-$product_version/lib/${mysql_connector}":
+  file { "$carbon_home/$product-$product_version/lib/${mysql_connector}":
     mode   => '0754',
-    source => "puppet:///modules/${module_name}/mysql/${mysql_connector}",
-    require => Class["ei_common"]
+    source => "puppet:///modules/${module_name}/mysql/${mysql_connector}"
   }
+
+ ###### ANALYTICS WORKER ######
+  # Copy configuration changes to the installed directory
+  $analytics_template_list.each |String $template| {
+    file { "$carbon_home/${template}":
+      ensure  => file,
+      mode    => '0644',
+      content => template("${puppet_modules_path}/${module_name}/templates/carbon-home/${template}.erb")
+    }
+  }
+
+  # Copy carbon.sh to installed directory
+  file { "$carbon_home/${analytics_start_script_template}":
+    ensure  => file,
+    owner   => $user,
+    group   => $user_group,
+    mode    => '0754',
+    content => template("${puppet_modules_path}/${module_name}/templates/carbon-home/${analytics_start_script_template}.erb")
+  }
+
+ ###### ANALYTICS DASHBOARD ######
+  # Copy configuration changes to the installed directory
+  $dashboard_template_list.each |String $template| {
+    file { "$carbon_home/${template}":
+      ensure  => file,
+      mode    => '0644',
+      content => template("${puppet_modules_path}/${module_name}/templates/carbon-home/${template}.erb")
+    }
+  }
+
+  # Copy carbon.sh to installed directory
+  file { "$carbon_home/${dashboard_start_script_template}":
+    ensure  => file,
+    owner   => $user,
+    group   => $user_group,
+    mode    => '0754',
+    content => template("${puppet_modules_path}/${module_name}/templates/carbon-home/${dashboard_start_script_template}.erb")
+  }
+
 }
